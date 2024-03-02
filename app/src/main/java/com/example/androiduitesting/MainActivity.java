@@ -76,9 +76,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("menuItems", "You clicked Item: " + id + " at position " + position);
-                City citySelected = (City) parent.getAdapter().getItem(position);
+                String cityName = (String) parent.getAdapter().getItem(position);
 
                 Intent intent = new Intent(MainActivity.this, ShowActivity.class);
+
+                // Bundle to pass the cityName to ShowActivity
+                Bundle bundle = new Bundle();
+                bundle.putString("cityName", cityName);
+                intent.putExtras(bundle);
+
                 startActivity(intent);
             }
         });
